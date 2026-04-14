@@ -1,0 +1,23 @@
+{
+  "overview": "ZoomCart BD is a Bangladeshi dropshipping reseller platform where anyone can sign up for free, get an affiliate link, share products on Facebook and WhatsApp, and earn 80–150 BDT commission per sale. Weekly payments via bKash/Nagad. Includes a product catalog, reseller dashboard, and admin panel.",
+  "features": [
+    "Landing page with hero, earnings showcase, and 4-step how-it-works",
+    "Product catalog with category filtering (Turbo Fan, Kitchen Tools, Health & Beauty, Gadgets)",
+    "Reseller dashboard with affiliate link copy tool and earnings summary",
+    "Admin panel for product management (with image uploads) and order tracking",
+    "Role-based access: admin vs. reseller via Internet Identity login",
+    "Mobile-first design with bilingual English + Bangla content",
+    "Trust badges: Fast Delivery, Weekly Payment, 100% Free Registration"
+  ],
+  "category": "e-commerce",
+  "tags": [
+    "e-commerce",
+    "reseller",
+    "affiliate",
+    "bangladesh",
+    "dropshipping",
+    "commission",
+    "bkash"
+  ],
+  "last_updated": "2026-04-14T16:17:09.633Z"
+}

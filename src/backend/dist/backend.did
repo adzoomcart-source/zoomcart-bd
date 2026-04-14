@@ -1,0 +1,110 @@
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type Timestamp = int;
+type ResellerProfile = 
+ record {
+   affiliateCode: text;
+   email: text;
+   isApproved: bool;
+   name: text;
+   "principal": principal;
+   registeredAt: Timestamp;
+   totalEarnings: nat;
+   totalSales: nat;
+ };
+type ResellerInput = 
+ record {
+   email: text;
+   name: text;
+ };
+type Reseller = 
+ record {
+   affiliateCode: text;
+   email: text;
+   isApproved: bool;
+   name: text;
+   "principal": principal;
+   registeredAt: Timestamp;
+ };
+type ProductInput = 
+ record {
+   category: ProductCategory;
+   commission: nat;
+   description: text;
+   imageUrl: text;
+   isFeatured: bool;
+   name: text;
+   price: nat;
+ };
+type ProductId = nat;
+type ProductCategory = 
+ variant {
+   fan;
+   gadgets;
+   health;
+   kitchen;
+ };
+type Product = 
+ record {
+   category: ProductCategory;
+   commission: nat;
+   createdAt: Timestamp;
+   description: text;
+   id: ProductId;
+   imageUrl: text;
+   isFeatured: bool;
+   name: text;
+   price: nat;
+ };
+type OrderStatus = 
+ variant {
+   completed;
+   paid;
+   pending;
+ };
+type OrderInput = 
+ record {
+   customerName: text;
+   customerPhone: text;
+   productId: ProductId;
+   resellerAffiliateCode: text;
+ };
+type OrderId = nat;
+type Order = 
+ record {
+   commissionAmount: nat;
+   customerName: text;
+   customerPhone: text;
+   id: OrderId;
+   orderDate: Timestamp;
+   productId: ProductId;
+   resellerPrincipal: principal;
+   status: OrderStatus;
+ };
+service : {
+  _initializeAccessControl: () -> ();
+  addProduct: (input: ProductInput) -> (Product);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  deleteProduct: (id: ProductId) -> ();
+  getCallerUserRole: () -> (UserRole) query;
+  getMyResellerProfile: () -> (opt ResellerProfile) query;
+  getOrders: () -> (vec Order) query;
+  getOrdersByReseller: () -> (vec Order) query;
+  getProduct: (id: ProductId) -> (opt Product) query;
+  getResellerProfile: ("principal": principal) -> (opt ResellerProfile) query;
+  initSampleProducts: () -> ();
+  isCallerAdmin: () -> (bool) query;
+  listProducts: () -> (vec Product) query;
+  listProductsByCategory: (category: ProductCategory) -> (vec Product) query;
+  listResellers: () -> (vec Reseller) query;
+  placeOrder: (input: OrderInput) -> (Order);
+  registerReseller: (input: ResellerInput) -> (Reseller);
+  searchProducts: (searchTerm: text) -> (vec Product) query;
+  updateOrderStatus: (orderId: OrderId, status: OrderStatus) -> ();
+  updateProduct: (id: ProductId, input: ProductInput) -> (Product);
+  updateResellerStatus: ("principal": principal, approved: bool) -> ();
+}
